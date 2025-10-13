@@ -10,40 +10,21 @@ const bookShelf = document.querySelector(".bookShelf");
 
 const myLibrary = [];
 
-function Book(title, author, pages) {
+function Book(title, author, pages, read) {
     if(!new.target) {
-        throw new Error("You must use the 'new' operator to call the constructor")
+        throw new Error("You must use the 'new' operator to call the constructor");
     }
 
     this.title = title;
     this.author = author;
     this.pages = pages;
-    if(bookRead.checked) {
-        this.read = "Read"
-    } else {
-        this.read = "Not read yet"
-    }
+    this.read = read ? "Read" : "Not read yet";
     this.id = crypto.randomUUID();
 }
 
 function addBookToLibrary(book) {
     myLibrary.push(book);
 }
-
-
-
-// const harryPotter = new Book("Harry Potter e a Pedra Filosofal", "J.K. Rolling", "235", "Not read yet");
-// const senhorDosAneis = new Book("Senhor dos Aneis e as Duas Torres", "J.R.R. Tolkien", "554", "Read");
-
-// addBookToLibrary(harryPotter);
-// addBookToLibrary(senhorDosAneis);
-
-// console.log(myLibrary);
-
-// const showBookForm = function() {
-//     const bookName = document.createElement()
-// }
-
 
 Book.prototype.showBook = function() {
     const bookCard = document.createElement("div");
@@ -73,11 +54,23 @@ Book.prototype.showBook = function() {
     bookCard.appendChild(readCard);
 }
 
+const harryPotter = new Book("Harry Potter e a Pedra Filosofal", "J.K. Rolling", "235");
+
+const senhorDosAneis = new Book("Senhor dos Aneis e as Duas Torres", "J.R.R. Tolkien", "554", "Read");
+
+addBookToLibrary(harryPotter);
+addBookToLibrary(senhorDosAneis);
+
+console.table(myLibrary);
+
+harryPotter.showBook();
+senhorDosAneis.showBook();
 
 addBtn.addEventListener("click", function() {
-    const book = new Book(bookName.value, bookAuthor.value, bookPages.value);
+    const readStatus = bookRead.checked;
+    const book = new Book(bookName.value, bookAuthor.value, bookPages.value, readStatus);
     addBookToLibrary(book);
-    console.table(book)
+    console.table(book);
     console.table(myLibrary);
     
     book.showBook();
