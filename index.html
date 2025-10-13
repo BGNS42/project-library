@@ -8,6 +8,36 @@
     <script src="./src/script.js" defer></script>
 </head>
 <body>
-    <h1>Project Skeleton</h1>
+    <div class="container">
+        <div class="header">header</div>
+        <div class="main">
+            <form>
+                <div class="name">
+                    <label for="bookName">Title:</label>
+                    <input type="text" name="" id="bookName">
+                </div>
+                <div class="author">
+                    <label for="bookAuthor">Author:</label>
+                    <input type="text" name="" id="bookAuthor">
+                </div>
+                <div class="pages">
+                    <label for="bookPages">Pages:</label>
+                    <input type="number" min="0" max="9999" step="1" name="" id="bookPages">
+                </div>
+                <div class="read">
+                    <label for="bookRead">Did you read the book?</label>
+                    <input type="checkbox" name="book_read" id="bookRead">
+                </div>
+                <div class="btns">
+                    <button class="button" id="addButton">Add book</button>
+                </div>
+            </form>
+
+            <div class="bookShelf">
+
+            </div>
+        </div>
+        <div class="footer">footer</div>
+    </div>
 </body>
 </html>

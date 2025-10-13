@@ -54,3 +54,52 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* start ------------------------------------------------------ */
+
+/* :root {
+
+} */
+
+body {
+  display: flex;
+  /* height: 100dvh; */
+}
+
+.container {
+  display: grid;
+  grid-template: auto minmax(30px, 150%) minmax(30px, 150%) auto  / auto;
+  grid-template-areas: 
+    "header"
+    "main"
+    "main"
+    "footer";
+}
+
+.header {
+  grid-area: header;
+  background-color: lightblue;
+}
+
+.main {
+  grid-area: main;
+  background-color: lightgoldenrodyellow;
+}
+
+.bookShelf {
+  background-color: orange;
+  border: 1px solid black;
+  border-radius: 8px;
+
+  display: grid;
+
+  gap: 6px;
+}
+
+.bookCard {
+  border: 1px solid gray;
+  border-radius: 8px;
+}
+
+.footer {
+  grid-area: footer;
+  background-color: lightgreen;
+}
