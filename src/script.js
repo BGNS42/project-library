@@ -1,10 +1,15 @@
 
 const container = document.querySelector(".container");
-const addBtn = document.querySelector("#addButton");
 const bookName = document.querySelector("#bookName");
 const bookAuthor = document.querySelector("#bookAuthor");
 const bookPages = document.querySelector("#bookPages");
 const bookRead = document.querySelector("#bookRead");
+
+const dialogNewBook = document.querySelector("dialog");
+const form = document.querySelector("form");
+const addBtn = document.querySelector("#addButton");
+const cancelBtn = document.querySelector("#cancel");
+const addBookBtn = document.querySelector("#addBook");
 
 const bookShelf = document.querySelector(".bookShelf");
 
@@ -56,23 +61,46 @@ Book.prototype.showBook = function() {
 
 const harryPotter = new Book("Harry Potter e a Pedra Filosofal", "J.K. Rolling", "235");
 
+const harryPotter2 = new Book("Harry Potter e a camara secreta", "J.K. Rolling", "235");
+
 const senhorDosAneis = new Book("Senhor dos Aneis e as Duas Torres", "J.R.R. Tolkien", "554", "Read");
 
 addBookToLibrary(harryPotter);
+addBookToLibrary(harryPotter2);
 addBookToLibrary(senhorDosAneis);
 
 console.table(myLibrary);
 
 harryPotter.showBook();
+harryPotter2.showBook();
+harryPotter2.showBook();
+harryPotter2.showBook();
+harryPotter2.showBook();
 senhorDosAneis.showBook();
 
-addBtn.addEventListener("click", function() {
+form.addEventListener("submit", function() {
     const readStatus = bookRead.checked;
     const book = new Book(bookName.value, bookAuthor.value, bookPages.value, readStatus);
     addBookToLibrary(book);
-    console.table(book);
+    // console.table(book);
     console.table(myLibrary);
     
     book.showBook();
+    // form.reset();
     // console.log("Heelo")
+})
+
+addBookBtn.addEventListener("click", () => {
+    form.reset();
+    dialogNewBook.showModal();
+})
+
+cancelBtn.addEventListener("click", () => {
+    dialogNewBook.close();
+})
+
+dialogNewBook.addEventListener("click", (event) => {
+    if (event.target === dialogNewBook) {
+      dialogNewBook.close();
+    }
 })

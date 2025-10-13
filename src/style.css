@@ -58,6 +58,22 @@ h1, h2, h3, h4, h5, h6 {
 /* :root {
 
 } */
+:root {
+  --padding-s: 10px;
+
+  --simple-box-shadow: black -4px 3px;
+}
+
+::backdrop {
+  background-image: linear-gradient(
+    45deg,
+    magenta,
+    rebeccapurple,
+    dodgerblue,
+    green,
+  );
+  opacity: 0.75;
+}
 
 body {
   display: flex;
@@ -65,11 +81,20 @@ body {
   align-items: center;
   justify-content: center;
   /* height: 100dvh; */
+  /* width: 100vw; */
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  padding: var(--padding-s);
 }
 
 .container {
   display: grid;
-  grid-template: auto minmax(30px, 150%) minmax(30px, 150%) auto  / auto;
+  grid-template: auto 1fr 2fr auto  / minmax(80vw, auto);
   grid-template-areas: 
     "header"
     "main"
@@ -80,11 +105,50 @@ body {
 .header {
   grid-area: header;
   background-color: lightblue;
+  padding: var(--padding-s);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+dialog:open {
+  place-self: center;
+  border: 3px solid slategray;
+  border-radius: 8px;
+}
+
+dialog::backdrop{
+  background:rgba(0, 0, 0, 0.692);
+}
+
+form label {
+  display: block;
+}
+
+form .btns {
+  display: flex;
+  justify-content: end;
+  gap: .5rem;
+}
+
+#addButton:hover {
+  background-color: rgba(0, 128, 0, 0.336);
+}
+#cancel:hover {
+  background-color: rgba(128, 0, 0, 0.336);
 }
 
 .main {
   grid-area: main;
   background-color: lightgoldenrodyellow;
+  padding: var(--padding-s);
+
+  gap: 10px;
+
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
 }
 
 .bookShelf {
@@ -93,16 +157,32 @@ body {
   border-radius: 8px;
 
   display: grid;
+  grid-template: 1fr / 1fr 1fr;
 
   gap: 6px;
+
+  padding: var(--padding-s);
+  box-shadow: var(--simple-box-shadow);
 }
 
 .bookCard {
   border: 1px solid gray;
+  background-color: lightcyan;
   border-radius: 8px;
+
+  display: grid;
+  grid-template: repeat(4, 1fr) / auto;
+
+
+  padding: var(--padding-s);
+  box-shadow: var(--simple-box-shadow);
 }
 
 .footer {
   grid-area: footer;
   background-color: lightgreen;
+  padding: var(--padding-s);
+
+  display: flex;
+  justify-content: center;
 }
