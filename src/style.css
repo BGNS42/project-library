@@ -62,12 +62,35 @@ h1, h2, h3, h4, h5, h6 {
   --simple-box-shadow: black -4px 3px;
 
   --font-size-std: clamp(.5rem, calc(5vw+1rem), 1rem);
+
+  --font-color: rgb(31, 31, 31);
+
+  --header-color: lightblue;
+  --backdrop-color: rgba(0, 0, 0, 0.692);
+  --addBtn-color: rgba(0, 128, 0, 0.336);
+  --cancel-color: rgba(128, 0, 0, 0.336);
+
+  --main-bg-color: lightgoldenrodyellow;
+  --shelf-bg-color: orange;
+  --card-bg-color: lightcyan;
+  --footer-bg-color: lightgreen;
+
+  --btn-bg-color: white;
+
+  --bot-line-color: rgba(128, 128, 128, 0.342);
+
 }
 
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-
+  background-color: var(--main-bg-color);
   font-size: var(--font-size-std);
+  color: var(--font-color);
+}
+
+input[type="text"],
+input[type="number"] {
+  width: 100%;
 }
 
 li {
@@ -91,8 +114,8 @@ button {
 
 .header {
   grid-area: header;
-  background-color: lightblue;
-  padding: var(--padding-s);
+  background-color: var(--header-color);
+  padding: var(--padding-m);
 
   display: flex;
   align-items: center;
@@ -106,16 +129,12 @@ button {
 
 dialog:open {
   place-self: center;
-  border: 3px solid slategray;
+  border: 2px solid slategray;
   border-radius: 8px;
 }
 
 dialog::backdrop{
-  background:rgba(0, 0, 0, 0.692);
-}
-
-form label {
-  display: block;
+  background: var(--backdrop-color);
 }
 
 form .btns {
@@ -125,15 +144,15 @@ form .btns {
 }
 
 #addButton:hover {
-  background-color: rgba(0, 128, 0, 0.336);
+  background-color: var(--addBtn-color);
 }
 #cancel:hover {
-  background-color: rgba(128, 0, 0, 0.336);
+  background-color: var(--cancel-color);
 }
 
 .main {
   grid-area: main;
-  background-color: lightgoldenrodyellow;
+  background-color: var(--main-bg-color);
   padding: var(--padding-m);
 
   gap: 10px;
@@ -144,7 +163,7 @@ form .btns {
 }
 
 .bookShelf {
-  background-color: orange;
+  background-color: var(--shelf-bg-color);
   border: 1px solid black;
   border-radius: 8px;
 
@@ -160,7 +179,7 @@ form .btns {
 
 .bookCard {
   border: 1px solid gray;
-  background-color: lightcyan;
+  background-color: var(--card-bg-color);
   border-radius: 8px;
 
   display: grid;
@@ -174,7 +193,7 @@ form .btns {
 }
 
 .bookCard li {
-  border-bottom: 1px solid rgba(128, 128, 128, 0.342);
+  border-bottom: 1px solid var(--bot-line-color);
 }
 
 div.btnCard {
@@ -187,9 +206,35 @@ div.btnCard {
 
 .footer {
   grid-area: footer;
-  background-color: lightgreen;
+  background-color: var(--footer-bg-color);
   padding: var(--padding-s);
 
   display: flex;
   justify-content: center;
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --font-color: rgb(230, 230, 230);
+
+    --header-color: #90cef46b;
+    --backdrop-color: rgba(0, 0, 0, 0.85);
+    --addBtn-color: rgba(0, 200, 0, 0.3);
+    --cancel-color: rgba(200, 0, 0, 0.3);
+
+    --main-bg-color: #1e1e1e; 
+    --shelf-bg-color: #2a2a2a;
+    --card-bg-color: #2f4f4f; 
+    --footer-bg-color: #2e8b57;
+
+    --btn-bg-color: #333333; 
+
+    --bot-line-color: rgba(200, 200, 200, 0.2);
+  }
+
+  dialog:open {
+  background-color: var(--header-color);
+  color: var(--font-color)
+  }
 }
