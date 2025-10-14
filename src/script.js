@@ -34,7 +34,7 @@ function addBookToLibrary(book) {
 Book.prototype.showBook = function() {
     const bookCard = document.createElement("div");
     bookCard.classList.add(`bookCard`);
-    bookCard.id = `${this.id}`
+    bookCard.dataset.id = `${this.id}`;
 
     const nameCard = document.createElement("li");
     nameCard.classList.add("nameCard");
@@ -57,7 +57,7 @@ Book.prototype.showBook = function() {
     deleteBook.innerText = "Delete Book"
 
     deleteBook.addEventListener("click", () => {
-        if (this.id === bookCard.id) {
+        if (this.id === bookCard.dataset.id) {
             bookShelf.removeChild(bookCard);
             const indexToRemove = myLibrary.findIndex(item => item.id === this.id);
             if (indexToRemove !== -1) {
