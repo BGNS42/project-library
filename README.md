@@ -17,6 +17,8 @@ This Library project is part of the JavaScript curriculum from The Odin Project.
 
 - **Responsive Layout:** Works well on various screen sizes using CSS Flexbox.
 
+- **Dark mode:** Color theme based on users preference.
+
 ## 🛠️ Technologies Used
 
 **HTML5:** Structured the app semantically, ensuring accessible and meaningful markup.
@@ -53,10 +55,15 @@ Then open `index.html` in your preferred browser.
 
 ## 📸 Screenshots
 Shelf image:
+![light Theme](./assets/image-light.png)
 ![shelf image](./assets/image.png)
+
 Form example:
+![light add book](./assets/image-1-light.png)
 ![add book](./assets/image-1.png)
+
 Mobile:
+![Mobile Light](./assets/image-2-light.png)
 ![mobile layout](./assets/image-2.png)
 
 ## 🚧 Challenges & Solutions
