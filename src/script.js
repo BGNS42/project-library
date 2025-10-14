@@ -31,6 +31,14 @@ function addBookToLibrary(book) {
     myLibrary.push(book);
 }
 
+Book.prototype.editRead = function(where) {
+    if(this.read === "Read") {
+        this.read = "Not read yet";
+    } else {
+        this.read = "Read";
+    }
+}
+
 Book.prototype.showBook = function() {
     const bookCard = document.createElement("div");
     bookCard.classList.add(`bookCard`);
@@ -52,6 +60,9 @@ Book.prototype.showBook = function() {
     readCard.classList.add("readCard");
     readCard.innerText = `Read: ${this.read}`;
 
+    const btnCard = document.createElement("div");
+    btnCard.classList.add("btnCard"); 
+
     const deleteBook = document.createElement("button");
     deleteBook.classList.add("delBtn");
     deleteBook.innerText = "Delete Book"
@@ -66,13 +77,23 @@ Book.prototype.showBook = function() {
         }
     })
     
+    const editRead = document.createElement("button");
+    editRead.classList.add("readBtn");
+    editRead.innerText = "Read?";
+
+    editRead.addEventListener("click", () => {
+        this.editRead();
+        readCard.innerText = `Read: ${this.read}`;
+    });
+
     bookShelf.appendChild(bookCard);
     bookCard.appendChild(nameCard);
     bookCard.appendChild(authorCard);
     bookCard.appendChild(pagesCard);
     bookCard.appendChild(readCard);
-    bookCard.appendChild(deleteBook);
-
+    bookCard.appendChild(btnCard);
+    btnCard.appendChild(editRead);
+    btnCard.appendChild(deleteBook);
 }
 
 const harryPotter = new Book("Harry Potter e a Pedra Filosofal", "J.K. Rowling", "235");
