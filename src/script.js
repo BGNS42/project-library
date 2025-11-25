@@ -15,85 +15,85 @@ const bookShelf = document.querySelector(".bookShelf");
 
 const myLibrary = [];
 
-function Book(title, author, pages, read) {
-    if(!new.target) {
-        throw new Error("You must use the 'new' operator to call the constructor");
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read ? "Read" : "Not read yet";
+    }
+    
+    id = crypto.randomUUID();
+
+    editRead() {
+        if(this.read === "Read") {
+            this.read = "Not read yet";
+        } else {
+            this.read = "Read";
+        }
     }
 
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read ? "Read" : "Not read yet";
-    this.id = crypto.randomUUID();
+    showBook() {
+        const bookCard = document.createElement("div");
+        bookCard.classList.add(`bookCard`);
+        bookCard.dataset.id = `${this.id}`;
+
+        const nameCard = document.createElement("li");
+        nameCard.classList.add("nameCard");
+        nameCard.innerText = `Title: ${this.title}`;
+
+        const authorCard = document.createElement("li");
+        authorCard.classList.add("authorCard");
+        authorCard.innerText = `Author: ${this.author}`;
+
+        const pagesCard = document.createElement("li");
+        pagesCard.classList.add("pagesCard");
+        pagesCard.innerText = `Pages: ${this.pages}`;
+
+        const readCard = document.createElement("li");
+        readCard.classList.add("readCard");
+        readCard.innerText = `Read: ${this.read}`;
+
+        const btnCard = document.createElement("div");
+        btnCard.classList.add("btnCard"); 
+
+        const deleteBook = document.createElement("button");
+        deleteBook.classList.add("delBtn");
+        deleteBook.innerText = "Delete Book"
+
+        deleteBook.addEventListener("click", () => {
+            if (this.id === bookCard.dataset.id) {
+                bookShelf.removeChild(bookCard);
+                const indexToRemove = myLibrary.findIndex(item => item.id === this.id);
+                if (indexToRemove !== -1) {
+                    myLibrary.splice(indexToRemove, 1);
+                }
+            }
+        })
+        
+        const editRead = document.createElement("button");
+        editRead.classList.add("readBtn");
+        editRead.innerText = "Read?";
+
+        editRead.addEventListener("click", () => {
+            this.editRead();
+            readCard.innerText = `Read: ${this.read}`;
+        });
+
+        bookShelf.appendChild(bookCard);
+        bookCard.appendChild(nameCard);
+        bookCard.appendChild(authorCard);
+        bookCard.appendChild(pagesCard);
+        bookCard.appendChild(readCard);
+        bookCard.appendChild(btnCard);
+        btnCard.appendChild(editRead);
+        btnCard.appendChild(deleteBook);
+    }
+
 }
 
 function addBookToLibrary(book) {
     myLibrary.push(book);
-}
-
-Book.prototype.editRead = function(where) {
-    if(this.read === "Read") {
-        this.read = "Not read yet";
-    } else {
-        this.read = "Read";
-    }
-}
-
-Book.prototype.showBook = function() {
-    const bookCard = document.createElement("div");
-    bookCard.classList.add(`bookCard`);
-    bookCard.dataset.id = `${this.id}`;
-
-    const nameCard = document.createElement("li");
-    nameCard.classList.add("nameCard");
-    nameCard.innerText = `Title: ${this.title}`;
-
-    const authorCard = document.createElement("li");
-    authorCard.classList.add("authorCard");
-    authorCard.innerText = `Author: ${this.author}`;
-
-    const pagesCard = document.createElement("li");
-    pagesCard.classList.add("pagesCard");
-    pagesCard.innerText = `Pages: ${this.pages}`;
-
-    const readCard = document.createElement("li");
-    readCard.classList.add("readCard");
-    readCard.innerText = `Read: ${this.read}`;
-
-    const btnCard = document.createElement("div");
-    btnCard.classList.add("btnCard"); 
-
-    const deleteBook = document.createElement("button");
-    deleteBook.classList.add("delBtn");
-    deleteBook.innerText = "Delete Book"
-
-    deleteBook.addEventListener("click", () => {
-        if (this.id === bookCard.dataset.id) {
-            bookShelf.removeChild(bookCard);
-            const indexToRemove = myLibrary.findIndex(item => item.id === this.id);
-            if (indexToRemove !== -1) {
-                myLibrary.splice(indexToRemove, 1);
-            }
-        }
-    })
-    
-    const editRead = document.createElement("button");
-    editRead.classList.add("readBtn");
-    editRead.innerText = "Read?";
-
-    editRead.addEventListener("click", () => {
-        this.editRead();
-        readCard.innerText = `Read: ${this.read}`;
-    });
-
-    bookShelf.appendChild(bookCard);
-    bookCard.appendChild(nameCard);
-    bookCard.appendChild(authorCard);
-    bookCard.appendChild(pagesCard);
-    bookCard.appendChild(readCard);
-    bookCard.appendChild(btnCard);
-    btnCard.appendChild(editRead);
-    btnCard.appendChild(deleteBook);
 }
 
 const harryPotter = new Book("Harry Potter e a Pedra Filosofal", "J.K. Rowling", "235");
